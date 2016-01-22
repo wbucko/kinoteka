@@ -66,3 +66,18 @@ h1 {
 .navbar-toggle {
 	margin-top: 20px;
 }
+
+input, textarea, select, .uneditable-input {
+	border: 1px solid #d2d2d2;
+	border-radius: 5px;
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.radio_button {
+	width: 10px;
+}
+
+label {
+	margin-right: 20px;
+}

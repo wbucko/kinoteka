@@ -1,0 +1,29 @@
+<%= render 'shared/errors', obj: @movie %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 well">
+		<%= form_for @movie do |f| %>
+			<%= f.label 'Tytuł' %>
+			<%= f.text_field :title %>
+
+			<%= f.label 'Rok produkcji' %>
+			<%= f.text_field :year %>
+
+			<%= f.label 'Reżyser' %>
+			<%= f.text_field :director %>
+
+			<%= f.label 'Amazon ID' %>
+			<%= f.text_field :amazon_id %>
+
+			<%= f.radio_button(:show, false, class: 'radio_button') %> 
+			<%= f.label 'Film' %>
+			<%= f.radio_button(:show, true, class: 'radio_button') %> 
+			<%= f.label 'Serial' %><br>
+
+			<%= f.label 'Recenzja' %>
+			<%= f.text_area :review, rows: 10 %>
+
+			<%= f.submit 'Zapisz', class: 'btn btn-success' %>
+		<% end %>
+	</div>
+</div>
+
