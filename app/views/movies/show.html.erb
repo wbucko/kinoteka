@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col-md-5 text-center">
+		<%= image_tag "#{@movie.amazon_id}", class: 'img_show' %>
+	</div>
+	<div class="col-md-7">
+		<h2><%= @movie.title %></h2>
+		<h4>Gatunek: <%= @movie.show ? 'Serial' : 'Film' %><br>
+		Rok produkcji: <%= @movie.year %><br>
+		Reżyser: <%= @movie.director %></h4>
+	</div>
+	<div class="col-md-12">
+		<p class="text-justify"><%= @movie.review %></p>
+	</div>
+</div>

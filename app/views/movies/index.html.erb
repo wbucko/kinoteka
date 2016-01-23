@@ -1,0 +1,24 @@
+<div class="row">
+	<h1 class="text-center">Dowiedz się więcej o interesującym cię filmie.</h1>
+	<hr>
+	<p>Okno Wyszukiwania tutaj będzie się znajdować</p>
+	<hr>
+	<% @movies.each do |m| %>
+		<ul class="list-unstyled">
+		<div class="row">
+			<div class="col-sm-3 text-center">
+			<%= link_to m do %>
+				<%= image_tag "#{m.amazon_id}", class: 'img_index' %>
+			<% end %>  
+			</div>
+			<div class="col-md-9">
+				<%= link_to m do %>
+					<h2><%= m.title %></h2>
+				<% end %>
+				<h3><%= m.year %><br>
+				<%= m.director %></h3>
+			</div>
+		</div>
+		</ul>
+	<% end %>
+</div>
