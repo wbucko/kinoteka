@@ -1,8 +1,9 @@
 <div class="row">
-	<h1 class="text-center">Dowiedz się więcej o interesującym cię tytule.</h1>
+	<h1 class="text-center">Dowiedz się więcej o interesującym cię <%= params[:show] ? 'Serialu' : 'Filmie' %>.</h1>
 	<hr>
 	<p>Okno Wyszukiwania tutaj będzie się znajdować</p>
 	<hr>
+	<%= will_paginate @movies, previous_label: t('Poprzednia'), next_label: t('Następna') %>
 	<% @movies.each do |m| %>
 		<ul class="list-unstyled">
 		<div class="row">
@@ -21,4 +22,5 @@
 		</div>
 		</ul>
 	<% end %>
+	<%= will_paginate @movies, previous_label: t('Poprzednia'), next_label: t('Następna') %>
 </div>
