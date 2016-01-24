@@ -3,12 +3,14 @@
 		<%= image_tag "#{@movie.amazon_id}", class: 'img_show' %>
 	</div>
 	<div class="col-md-7">
-		<h2><%= @movie.title %></h2>
-		<h4>Gatunek: <%= @movie.show ? 'Serial' : 'Film' %><br>
+		<h1><%= @movie.title %></h1>
+		<h4 class="h4_show">Gatunek: <%= @movie.show ? 'Serial' : 'Film' %><br>
 		Rok produkcji: <%= @movie.year %><br>
 		Reżyser: <%= @movie.director %></h4>
 	</div>
 	<div class="col-md-12">
-		<p class="text-justify"><%= @movie.review %></p>
+		<p class="text-justify btn_show"><%= @movie.review %></p>
+		<%= link_to 'Edytuj', edit_movie_path(@movie), class: 'btn btn-info btn_show' %>
+		<%= link_to 'Powrót', movies_path, class: 'btn btn-default btn_show' %>
 	</div>
 </div>
