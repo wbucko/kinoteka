@@ -21,6 +21,10 @@ body {
 	padding-top: 100px;
 }
 
+.footer p {
+	margin-top: 10px
+}
+
 .nav_link {
 	margin-left: 25px;
 	margin-top: 20px;
@@ -111,4 +115,12 @@ a:hover {
 
 .btn_show {
 	margin-top: 20px;
+}
+
+.btn-success {
+	margin-bottom: 10px;
+}
+
+.gravatar {
+	border-radius: 13%;
 }
