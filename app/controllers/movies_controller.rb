@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
 	def index
-		@movies = Movie.where(show: (params[:show] ? true : false)).paginate(page: params[:page], per_page: 5)
+		@movies = Movie.show(params[:show]).search(params[:keyword]).paginate(page: params[:page], per_page: 5)
 	end 
 
 	def new
