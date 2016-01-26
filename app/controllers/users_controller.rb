@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
-		if @user.update
+		if @user.update(user_params)
 			flash[:success] = 'Użytkownik został zapisany.'
 			redirect_to user_path(@user)
 		else
