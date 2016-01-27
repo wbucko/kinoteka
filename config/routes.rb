@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   resources :movies
   resources :users, except: [:index]
+  delete '/users/:id' => 'users#destroy', as: 'destroy_user'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

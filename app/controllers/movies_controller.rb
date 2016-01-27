@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+	before_action :admin_user, except: [:index, :show]
 
 	def index
 		@movies = Movie.show(params[:show]).search(params[:keyword]).paginate(page: params[:page], per_page: 5)
@@ -42,6 +43,7 @@ class MoviesController < ApplicationController
 		@movie = Movie.find(params[:id])
 		@movie.destroy
 		flash[:success] = 'Film został usunięty'
+		redirect_to root_path
 	end
 
 	private

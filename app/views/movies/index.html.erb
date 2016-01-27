@@ -10,7 +10,9 @@
 			<input type="text" class="form-control" value='<%= params[:keyword] %>' name="keyword" placeholder="Szukaj">
 		</div>
 		<button type="submit" class="btn btn-default">Szukaj</button>
+		<%= link_to 'Nowy', new_movie_path, class: 'btn btn-primary' if admin? %>		
 	</form>
+
 	<hr>
 	<%= will_paginate @movies, previous_label: t('Poprzednia'), next_label: t('Następna') %>
 	<% @movies.each do |m| %>

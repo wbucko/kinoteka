@@ -8,21 +8,18 @@
 		    <span class="icon-bar"></span>
 		  </button>
 			<%= link_to 'Kinoteka', root_path, class: 'btn btn-lg btn-primary', id: 'logo' %>
-		</div>
+		</div>	
     <div class="collapse navbar-collapse" id="main-nav-collapse">
-      <div class="nav navbar-nav navbar-right">
-				<div class="nav_link">
-					<%= link_to 'Zaloguj', '', class: 'btn btn-default' %>
-				</div>
-				<div class="nav_link">
-					<%= link_to 'Top seriale', '', class: 'btn btn-default btn_top' %>
-				</div>		
-				<div class="nav_link">
-					<%= link_to 'Top filmy', '', class: 'btn btn-default btn_top' %>
-				</div>		
-			</div>
+    	<ul class="nav navbar-nav navbar-right">
+				<li><%= link_to 'Top filmy', '', class: 'nav_link' %></li>
+				<li><%= link_to 'Top seriale', '', class: 'nav_link' %></li>
+				<% if current_user %>
+					<li><%= link_to 'Profil', user_path(current_user), class: 'nav-link' %>
+					<li><%= link_to 'Wyloguj', logout_path, class: 'nav_link' %></li>
+				<% else %>
+					<li><%= link_to 'Zaloguj', login_path, class: 'nav_link' %></li>
+				<% end %>
+			</ul>
 		</div>
 </nav>
-
-
 

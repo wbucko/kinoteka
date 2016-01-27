@@ -10,7 +10,7 @@
 	</div>
 	<div class="col-md-12">
 		<p class="text-justify btn_show"><%= @movie.review %></p>
-		<%= link_to 'Edytuj', edit_movie_path(@movie), class: 'btn btn-info btn_show' %>
+		<%= link_to 'Edytuj', edit_movie_path(@movie), class: 'btn btn-info btn_show'  if admin? %>
 		<%= link_to 'Powrót', movies_path, class: 'btn btn-default btn_show' %>
 	</div>
 </div>

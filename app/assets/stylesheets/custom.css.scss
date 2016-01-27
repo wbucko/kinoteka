@@ -1,11 +1,11 @@
-$navbar-default-bg: #663100;
+$navbar-default-bg: #654321;
 $navbar-default-color: white;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 .navbar {
-  border-bottom: solid 4px #331900;
+  border-bottom: solid 4px #000;
 }
 
 #logo {
@@ -25,10 +25,13 @@ body {
 	margin-top: 10px
 }
 
-.nav_link {
-	margin-left: 25px;
-	margin-top: 20px;
-	float: right;
+.navbar-right {
+	margin-top: 15px;
+}
+
+.navbar-default .navbar-nav li a {
+	color: #fff;
+	font-size: 1.4em;
 }
 
 .btn_top {
