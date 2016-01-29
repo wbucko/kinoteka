@@ -6,7 +6,7 @@ module MoviesHelper
 
 	def overal_score(movie)
 		sum = Comment.where(movie_id: movie.id).sum :movie_grade
-		sum.to_f/movie.comments.count
+		(sum.to_f/movie.comments.count).round(1)
 	end
 	
 end

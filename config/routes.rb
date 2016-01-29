@@ -2,9 +2,12 @@ Rails.application.routes.draw do
 
   root 'pages#index'
   resources :movies do
-    resources :comments
+    resources :comments, except: [:create, :update, :index]
   end
-  
+  #get '/movies/:movie_id/comments' => 'comments#index', as: 'comments'
+  post '/movies/:movie_id/comments/new' => 'comments#create'
+  patch '/movies/:movie_id/comments/:id' => 'comments#update', as: 'update_movie_comment'
+
   resources :users, except: [:index]
   delete '/users/:id' => 'users#destroy', as: 'destroy_user'
 

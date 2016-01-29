@@ -1,5 +1,6 @@
 class Movie < ActiveRecord::Base
-	has_many :comments
+	has_many :comments, dependent: :destroy
+	accepts_nested_attributes_for :comments, :allow_destroy => true
 
 	validates :title, :year, :director, :amazon_id, presence: true
 	validates :review, presence: true, length: { minimum: 140 }

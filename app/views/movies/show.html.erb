@@ -13,7 +13,8 @@
 		<p class="text-justify btn_show"><%= @movie.review %></p>
 		<%= link_to 'Edytuj', edit_movie_path(@movie), class: 'btn btn-info btn_show'  if admin? %>
 		<%= link_to 'Powrót', movies_path, class: 'btn btn-default btn_show' %><br>
-		<h4>Recenzje użytkowników:</h4><hr>
+		<h4>Podziel się z innymi swoją opinią <%= link_to 'Nowy komentarz', new_movie_comment_path(@movie), class: 'btn btn-primary' %></h4><hr>
+		<h4>Recenzje użytkowników:</h4><br>
 	</div>
 
 		<% @movie.comments.each do |comment| %>
@@ -23,7 +24,9 @@
 				<h5 class="text-center"><%= comment.user.name %></h5><br>
 			</div>
 			<div class="col-md-8 comment">
-				<p class="btn_show"><%= comment.content %></p><br>
+				<p class="btn_show"><%= comment.content %></p>
+				<p><%= link_to 'Edytuj', "/movies/#{@movie.id}/comments/#{comment.id}/edit" %>
+				<%= link_to 'Usuń', "/movies/#{@movie.id}/comments/#{comment.id}", method: :delete %></p><br>
 			</div>
 			<div class="col-md-2">
 				<h3><%= comment.movie_grade %>/10</h3>
@@ -32,3 +35,5 @@
 		<% end %>
 	</div>
 </div>
+
+

@@ -1,0 +1,16 @@
+<%= render 'shared/errors', obj: @comment %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 well">
+		<%= form_for @comment, url: @comment.new_record? ? new_movie_comment_path : update_movie_comment_path do |f| %>
+
+			<%= f.label 'Ocena' %>
+			<%= f.select :movie_grade, options_for_select(1..10) %>
+
+			<%= f.label 'Komentarz' %>
+			<%= f.text_area :content, rows: 5 %>
+			
+			<%= f.submit 'Zapisz', class: 'btn btn-success' %>
+			<%= link_to 'Powrót', :back, class: 'btn btn-default uneditable-input' %>
+		<% end %>
+	</div>
+</div>
