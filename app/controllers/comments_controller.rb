@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
 
+	def index
+		@movie = Movie.find(params[:id])
+		@comments = @movie.comments
+	end
+
 	def new
 		@comment = Comment.new
 	end

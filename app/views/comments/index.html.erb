@@ -1,0 +1,6 @@
+<div class="col-md-8 col-md-offset-2">
+	<% @movie.comments.each do |comment| %>
+		<h5><%= comment.user.name %>:</h5><br>
+		<p><%= comment.content %></p><br>
+	<% end %>
+</div>
