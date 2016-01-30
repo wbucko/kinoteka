@@ -24,4 +24,10 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def logged_user
+		unless current_user
+			redirect_to root_path 
+			flash[:danger] = 'Tylko zalogowany użytkownik może to zrobić!'
+		end
+	end
 end

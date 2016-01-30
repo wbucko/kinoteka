@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :comments, dependent: :destroy
+	has_many :movies, through: :comments
 	accepts_nested_attributes_for :comments, :allow_destroy => true
 	has_secure_password
 	before_save { self.email = email.downcase }

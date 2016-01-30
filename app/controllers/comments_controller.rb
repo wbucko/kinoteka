@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
-
-	def index
-	end
+	before_action :logged_user
 
 	def new
 		@movie = Movie.find(params[:movie_id])

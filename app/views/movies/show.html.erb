@@ -12,28 +12,32 @@
 	<div class="col-md-12">
 		<p class="text-justify btn_show"><%= @movie.review %></p>
 		<%= link_to 'Edytuj', edit_movie_path(@movie), class: 'btn btn-info btn_show'  if admin? %>
-		<%= link_to 'Powrót', movies_path, class: 'btn btn-default btn_show' %><br>
-		<h4>Podziel się z innymi swoją opinią <%= link_to 'Nowy komentarz', new_movie_comment_path(@movie), class: 'btn btn-primary' %></h4><hr>
-		<h4>Recenzje użytkowników:</h4><br>
+		<%= link_to 'Powrót', movies_path, class: 'btn btn-default btn_show' %>
+		<br>
+		<% if logged_in? && @movie.users.exclude?(current_user) %>
+			<h4>Podziel się z innymi swoją opinią <%= link_to 'Nowy komentarz', new_movie_comment_path(@movie), class: 'btn btn-primary' %></h4>
+		<% end %>
+		<hr><h4>Recenzje użytkowników:</h4><br>
 	</div>
 
-		<% @movie.comments.each do |comment| %>
+	<% @movie.comments.each do |comment| %>
 		<div class="row">
 			<div class="col-md-1 col-md-offset-1">
 				<%= gravatar_for comment.user, size: 75 %>
-				<h5 class="text-center"><%= comment.user.name %></h5><br>
+				<h5 class="text-center"><%= link_to comment.user.name, user_path(comment.user) %></h5><br>
 			</div>
-			<div class="col-md-8 comment">
+			<div class="col-md-8 comment"> 
 				<p class="btn_show"><%= comment.content %></p>
-				<p><%= link_to 'Edytuj', "/movies/#{@movie.id}/comments/#{comment.id}/edit" %>
-				<%= link_to 'Usuń', "/movies/#{@movie.id}/comments/#{comment.id}", method: :delete %></p><br>
+				<% if comment.user == current_user || admin? %>
+				<p class="btn_com"><%= link_to 'Edytuj', "/movies/#{@movie.id}/comments/#{comment.id}/edit" %>
+				<%= link_to 'Usuń', "/movies/#{@movie.id}/comments/#{comment.id}", method: :delete %></p>
+				<% end %><br>
 			</div>
 			<div class="col-md-2">
 				<h3><%= comment.movie_grade %>/10</h3>
 			</div>
 		</div>
-		<% end %>
-	</div>
+	<% end %>
 </div>
 
 
