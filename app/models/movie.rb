@@ -4,8 +4,9 @@ class Movie < ActiveRecord::Base
 	has_many :users, through: :comments
 	accepts_nested_attributes_for :comments, :allow_destroy => true
 
-	validates :title, :year, :director, :amazon_id, presence: true
+	validates :title, :director, :amazon_id, presence: true
 	validates :review, presence: true, length: { minimum: 140 }
+	validates :year, presence: true, numericality: { greater_than: 1900 }
 
 	scope :search, ->(keyword){ where('keywords LIKE ?', "%#{keyword.downcase}%") if keyword.present? }
 	before_save :set_keywords

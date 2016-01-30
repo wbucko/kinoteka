@@ -1,28 +1,32 @@
-== README
+testing specs for Movie:
+title: string
+year: integer
+director: string
+amazon_id: string
+review: text
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- title, year, director, amazon_id and review must be present
+- year must be > 1900
+- review must be > 140
 
-Things you may want to cover:
+testing specs for User:
+name: string
+email: string
+password: string
 
-* Ruby version
+- name, email, password must be present
+- email must be unique
+- email must have valid format
+- email must be shorter than 105 characters
+- password must be longer than 5 characters
 
-* System dependencies
+testing specs for Comments
+user_id: integer
+movie_id: integer
+movie_grade: integer
+content: string
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- user_id, movie_id, movie_grade and content must be present
+- content must be longer than 40 characters
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
