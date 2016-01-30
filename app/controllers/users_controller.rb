@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_action :find_user, only: [:edit, :update, :show, :destroy]
 	before_action :require_same_user, only: [:edit, :update]
 	before_action :admin_user, only: :destroy
 	
@@ -19,11 +20,9 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		@user = User.find(params[:id])
 	end
 
 	def update
-		@user = User.find(params[:id])
 		if @user.update(user_params)
 			flash[:success] = 'Użytkownik został zapisany.'
 			redirect_to user_path(@user)
@@ -34,11 +33,9 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
 	end
 
 	def destroy
-		@user = User.find(params[:id])
 		@user.destroy
 		flash[:success] = 'Użytkownik został usunięty.'
 		redirect_to root_path
@@ -56,4 +53,7 @@ class UsersController < ApplicationController
 		end
   end
 
+  def find_user
+  	@user = User.find(params[:id])
+  end
 end

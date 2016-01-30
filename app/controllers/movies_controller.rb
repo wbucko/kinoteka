@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+	before_action :find_movie, only: [:edit, :update, :show, :destroy]
 	before_action :admin_user, except: [:index, :show]
 
 	def index
@@ -21,11 +22,9 @@ class MoviesController < ApplicationController
 	end
 
 	def edit
-		@movie = Movie.find(params[:id])
 	end
 
 	def update
-		@movie = Movie.find(params[:id])
 		if @movie.update(movies_params)
 			flash[:success] = 'Film został zapisany'
 			redirect_to movie_path(@movie)
@@ -36,11 +35,9 @@ class MoviesController < ApplicationController
 	end
 
 	def show
-		@movie = Movie.find(params[:id])
 	end
 
 	def destroy
-		@movie = Movie.find(params[:id])
 		@movie.destroy
 		flash[:success] = 'Film został usunięty'
 		redirect_to root_path
@@ -50,5 +47,9 @@ class MoviesController < ApplicationController
 	def movies_params
 		params.require(:movie).permit(:title, :year, :director, :amazon_id, :show, :review)
 	end
+
+	def find_movie
+  	@movie = Movie.find(params[:id])
+  end
 
 end

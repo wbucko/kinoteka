@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+	before_action :find_comment, only: [:edit, :update, :destroy]
 	before_action :logged_user
 
 	def new
@@ -20,11 +21,9 @@ class CommentsController < ApplicationController
 	end
 
 	def edit
-		@comment = Comment.find(params[:id])
 	end
 
 	def update
-		@comment = Comment.find(params[:id])
 		if @comment.update(comment_params)
 			flash[:success] = 'Komentarz został zapisany'
 			redirect_to movie_path(@comment.movie)
@@ -35,7 +34,6 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-		@comment = Comment.find(params[:id])
 		@comment.destroy
 		flash[:danger] = 'Komentarz został usunięty.'
 		redirect_to :back
@@ -44,6 +42,10 @@ class CommentsController < ApplicationController
 	private
 	def comment_params
 		params.require(:comment).permit(:content, :movie_grade)
+	end
+
+	def find_comment
+		@comment = Comment.find(params[:id])
 	end
 
 end
