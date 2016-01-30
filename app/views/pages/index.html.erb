@@ -1,6 +1,6 @@
 <div class="center jumbotron">
 	<h1>Witaj w Kinotece!</h1>
-	<h2>Zarejestruj się, aby współdzielić z inny osobami ulubione filmy i seriale. Bierz udział w tworzeniu raningu produkcji, które trzeba obejrzeć.</h2><br>
+	<h2>Zarejestruj się, aby współdzielić z inny osobami ulubione filmy i seriale. Bierz udział w tworzeniu raningu produkcji, które trzeba obejrzeć. Jako zalogowany użytkownik będziesz miał możliwość komentowania i oceniania każdego filmu i serialu. Aby zobaczyć jak to wygląda zanim się zarejestrujesz, zaloguj się wykorzystując maila 'demo@t.pl' i hasło 123456.</h2><br>
 	<%= link_to 'Zarejestruj się!', new_user_path, class: 'btn btn-lg btn-success' %>
 </div>
 <div class="row">
@@ -20,14 +20,14 @@
 		<h3 class="text-justify">
 		Wybierz następny film lub serial opierając się na subiektywnym rankingu naszych użytkowników.
 		</h3><br>
-		<p><%= link_to 'Rankingi', '', class: 'btn btn-warning btn_home' %></p>
+		<p><%= link_to 'Rankingi', movies_ranking_path, class: 'btn btn-warning btn_home' %></p>
 	</div>
 	<div class="col-lg-4">
 		<h2 class="center">
 			Seriale
 		</h2>
 		<h3 class="text-justify">
-		Sprawdź informacje o swoich ulubionych serialach. Zobacz, które miejsca zajmują w rankingu
+		Sprawdź informacje o swoich ulubionych serialach. Zobacz, co inni o nich sądzą.
 		</h3><br>
 		<p><%= link_to 'Lista Seriali', movies_path(show: true), class: 'btn btn-warning btn_home' %></p>
 	</div>	

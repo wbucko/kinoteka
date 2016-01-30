@@ -1,4 +1,5 @@
 class Movie < ActiveRecord::Base
+
 	has_many :comments, dependent: :destroy
 	has_many :users, through: :comments
 	accepts_nested_attributes_for :comments, :allow_destroy => true
@@ -11,6 +12,12 @@ class Movie < ActiveRecord::Base
 
 	def self.show(show)
 		where(show: (show ? true : false))
+	end
+
+	def overal_score
+		sum = Comment.where(movie_id: self.id).sum :movie_grade
+		score = (sum.to_f/self.comments.count).round(1)
+		sum == 0 ? '--' : score
 	end
 
 	protected

@@ -7,7 +7,7 @@
 		<h4 class="h4_show">Gatunek: <%= @movie.show ? 'Serial' : 'Film' %><br>
 		Rok produkcji: <%= @movie.year %><br>
 		Reżyser: <%= @movie.director %></h4><br><br>
-		<h3>Średnia ocena: <%= overal_score(@movie) %>/10</h3>
+		<h3>Średnia ocena: <%= @movie.overal_score %>/10</h3>
 	</div>
 	<div class="col-md-12">
 		<p class="text-justify btn_show"><%= @movie.review %></p>
