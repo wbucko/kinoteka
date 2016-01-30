@@ -14,7 +14,8 @@
 	<div class="col-md-12">
 		<h4 class="h4_show">Komentarze użytkownika:</h4><hr>
 	</div>
-	<% @user.comments.each do |comment| %>
+	<%= will_paginate @user_com, previous_label: t('Poprzednia'), next_label: t('Następna') %>
+	<% @user_com.each do |comment| %>
 		<div class="row">
 			<div class="col-md-2 text-center">
 				<%= image_tag "#{comment.movie.amazon_id}", class: 'img_user_show' %><br>
@@ -30,6 +31,7 @@
 			<div class="col-md-2">
 				<h3><%= comment.movie_grade %>/10</h3>
 			</div>
-		</div>
+		</div><br>
 	<% end %>
+	<%= will_paginate @user_com, previous_label: t('Poprzednia'), next_label: t('Następna') %>
 </div>
