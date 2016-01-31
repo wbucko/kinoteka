@@ -22,9 +22,9 @@
 
 	<% @movie.comments.each do |comment| %>
 		<div class="row">
-			<div class="col-md-1 col-md-offset-1">
+			<div class="col-md-1 col-md-offset-1 text-center">
 				<%= gravatar_for comment.user, size: 75 %>
-				<h5 class="text-center"><%= link_to comment.user.name, user_path(comment.user) %></h5><br>
+				<h5><%= link_to comment.user.name, user_path(comment.user) %></h5><br>
 			</div>
 			<div class="col-md-8 comment"> 
 				<p class="btn_show"><%= comment.content %></p>
@@ -33,7 +33,7 @@
 				<%= link_to 'Usuń', "/movies/#{@movie.id}/comments/#{comment.id}", method: :delete, data: { confirm: "Jesteś pewien?" } %></p>
 				<% end %><br>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-1 text-center">
 				<h3><%= comment.movie_grade %>/10</h3>
 			</div>
 		</div>
