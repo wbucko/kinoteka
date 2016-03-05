@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 	def update
 		if @user.update(user_params)
 			flash[:success] = 'Użytkownik został zapisany.'
-			redirect_to user_path(@user)
+			redirect_to root_path
 		else
 			flash[:danger] = "Coś poszło nie tak, spróbuj ponownie."
 			render :edit

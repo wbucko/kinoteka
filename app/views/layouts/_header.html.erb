@@ -15,7 +15,8 @@
 				<li><%= link_to 'Filmy', movies_path, class: 'nav_link' %></li>
 				<li><%= link_to 'Seriale', movies_path(show: true), class: 'nav_link' %></li>
 				<% if current_user %>
-					<li><%= link_to 'Profil', user_path(current_user), class: 'nav-link' %>
+					<li><%= link_to 'Konto', edit_user_path(current_user), class: 'nav-link' %>
+					<li><%= link_to 'Profil', user_profile_path(current_user), class: 'nav-link' %>
 					<li><%= link_to 'Wyloguj', logout_path, class: 'nav_link' %></li>
 				<% else %>
 					<li><%= link_to 'Zaloguj', login_path, class: 'nav_link' %></li>

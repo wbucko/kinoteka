@@ -1,0 +1,21 @@
+<%= render 'shared/errors', obj: @profile %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 well">
+		<%= form_for @profile, url: user_profile_path do |f| %>
+			<%= f.label 'Imię' %>
+			<%= f.text_field :name %>
+
+			<%= f.label 'Nazwisko' %>
+			<%= f.text_field :surname %>
+
+			<%= f.label 'Ulubiony film' %>
+			<%= f.password_field :favorite %>
+
+			<%= f.label 'Napisz coś o sobie' %>
+			<%= f.text_area :bio, rows: 10 %>
+
+			<%= f.submit 'Zapisz', class: 'btn btn-success' %>
+			<%= link_to 'Powrót', :back, class: 'btn btn-default uneditable-input' %>
+		<% end %>
+	</div>
+</div>

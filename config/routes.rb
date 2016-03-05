@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   post '/movies/:movie_id/comments/new' => 'comments#create'
   patch '/movies/:movie_id/comments/:id' => 'comments#update', as: 'update_movie_comment'
 
-  resources :users, except: [:index]
+  resources :users, except: [:index] do 
+    resource :profile
+  end
+  
   delete '/users/:id' => 'users#destroy', as: 'destroy_user'
 
   get '/login' => 'sessions#new'
