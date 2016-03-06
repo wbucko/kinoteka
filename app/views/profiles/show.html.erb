@@ -11,7 +11,7 @@
 		<p><b>O użytkowniku:</b></p>
 		<p><%= @profile.bio %></p>
 		<%= link_to 'Usuń', destroy_user_path(@user), method: :delete, class: 'btn btn-danger btn_show' if admin? %>	
-		<%= link_to 'Edytuj', edit_user_path(@user), class: 'btn btn-info btn_show' %>
+		<%= link_to 'Edytuj', edit_user_profile_path(@user), class: 'btn btn-info btn_show' %>
 		<%= link_to 'Powrót', root_path, class: 'btn btn-default btn_show' %>
 	</div>
 	<div class="col-md-12">

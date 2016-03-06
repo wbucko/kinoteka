@@ -1,12 +1,13 @@
 class ProfilesController < ApplicationController
+  before_action :find_user
+  before_action :set_profile, only: [:show, :edit, :update]
+  before_action :find_profile, except: [:new, :create]
     
   def new
-    @user = User.find(params[:user_id])
     @profile = @user.build_profile
   end
 
   def create
-    @user = User.find( params[:user_id] )
     @profile = @user.build_profile(profile_params)
     if @profile.save
       flash[:success] = "Profil utworzony!"
@@ -18,22 +19,16 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @user = User.find( params[:user_id] )
     @user_com = @user.comments.paginate(page: params[:page], per_page: 5)
-    @profile = @user.profile
   end
 
   def edit
-    @user = User.find( params[:user_id] )
-    @profile = @user.profile
   end
 
   def update
-    @user = User.find( params[:user_id] )
-    @profile = @user.profile
     if @profile.update_attributes(profile_params)
       flash[:success] = 'Profil zaktualizowany!'
-      redirect_to user_path(@user)
+      redirect_to user_profile_path(@user)
     else
       flash[:danger] = 'Poprawnie uzupełnij wszystkie pola!'
       render action: :edit
@@ -43,5 +38,17 @@ class ProfilesController < ApplicationController
 private
   def profile_params
     params.require(:profile).permit(:name, :surname, :favorite, :bio) 
-  end    
+  end
+
+  def find_profile
+    redirect_to new_user_profile_url unless @profile  
+  end 
+
+  def find_user
+    @user = User.find(params[:user_id])
+  end
+
+  def set_profile
+    @profile = @user.profile
+  end
 end

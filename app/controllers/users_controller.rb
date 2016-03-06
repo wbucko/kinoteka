@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 		if @user.save
 			flash[:success] = 'Użytkownik został utworzony.'
 			session[:user_id] = @user.id
-			redirect_to root_path
+			redirect_to new_user_profile_path(@user)
 		else
 			flash[:danger] = "Coś poszło nie tak, spróbuj ponownie."
 			render :new
