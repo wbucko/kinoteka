@@ -1,0 +1,24 @@
+<div class="row">
+	<h1 class="text-center">Dowiedz się więcej o interesującym cię reżyserze.</h1>
+	<hr>
+
+	<%= will_paginate @directors, previous_label: t('Poprzednia'), next_label: t('Następna') %>
+	<% @directors.each do |d| %>
+		<ul class="list-unstyled">
+		<div class="row">
+			<div class="col-sm-3 text-center">
+			<%= link_to d do %>
+				<%= image_tag "#{d.photo_url}", class: 'img_index' %>
+			<% end %>  
+			</div>
+			<div class="col-md-9">
+				<%= link_to d do %>
+					<h2><%= d.name %></h2>
+				<% end %>
+				<h3 class="text_grey"><%= d.birth %></h3>
+			</div>
+		</div>
+		</ul>
+	<% end %>
+	<%= will_paginate @directors, previous_label: t('Poprzednia'), next_label: t('Następna') %>
+</div>

@@ -1,7 +1,8 @@
 class DirectorsController < ApplicationController
+	before_action :set_director, only: [:edit, :update, :delete, :show]
 
 	def index
-		@directors = Director.all
+		@directors = Director.paginate(page: params[:page], per_page: 10)
 	end	
 
 	def new
@@ -20,11 +21,9 @@ class DirectorsController < ApplicationController
 	end
 
 	def edit
-		@director = Director.find(params[:id])
 	end
 
 	def update
-		@director = Director.find(params[:id])
 		if @director.update(directors_params)
 			flash[:success] = 'Reżyser został zapisany.'
 			redirect_to @director
@@ -34,19 +33,21 @@ class DirectorsController < ApplicationController
 		end	
 	end
 
-	def delete
-		@director = Director.find(params[:id])
+	def destroy
 		@director.destroy
 		flash[:success] = 'Film został usunięty'
 		redirect_to directors_path
 	end
 
 	def show
-		@director = Director.find(params[:id])
 	end
 
 	private
 	def directors_params
 		params.require(:director).permit(:name)
+	end
+
+	def set_director
+		@director = Director.find(params[:id])
 	end
 end
