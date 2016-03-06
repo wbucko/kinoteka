@@ -10,16 +10,19 @@
 			<%= link_to 'Filmoteka', root_path, class: 'btn btn-lg btn-primary', id: 'logo' %>
 		</div>	
     <div class="collapse navbar-collapse" id="main-nav-collapse">
-    	<ul class="nav navbar-nav navbar-right">
-    		<li><%= link_to 'Ranking', movies_ranking_path, class: 'nav_link' %></li>
-				<li><%= link_to 'Filmy', movies_path, class: 'nav_link' %></li>
-				<li><%= link_to 'Seriale', movies_path(show: true), class: 'nav_link' %></li>
+    	<ul class="nav navbar-nav navbar-left">
+    		<li><%= link_to 'Ranking', movies_ranking_path %></li>
+				<li><%= link_to 'Filmy', movies_path %></li>
+				<li><%= link_to 'Seriale', movies_path(show: true) %></li>
+				<li><%= link_to 'Reżyserzy', directors_path %></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">	
 				<% if current_user %>
-					<li><%= link_to 'Konto', edit_user_path(current_user), class: 'nav-link' %>
-					<li><%= link_to 'Profil', user_profile_path(current_user), class: 'nav-link' %>
-					<li><%= link_to 'Wyloguj', logout_path, class: 'nav_link' %></li>
+					<li><%= link_to 'Konto', edit_user_path(current_user) %>
+					<li><%= link_to 'Profil', user_profile_path(current_user) %>
+					<li><%= link_to 'Wyloguj', logout_path %></li>
 				<% else %>
-					<li><%= link_to 'Zaloguj', login_path, class: 'nav_link' %></li>
+					<li><%= link_to 'Zaloguj', login_path %></li>
 				<% end %>
 			</ul>
 		</div>

@@ -1,0 +1,22 @@
+<%= render 'shared/errors', obj: @director %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 well">
+		<%= form_for @director do |f| %>
+			<%= f.label 'Imię i nazwisko' %>
+			<%= f.text_field :name %>
+
+			<%= f.label 'Adres url zdjęcia' %>
+			<%= f.text_field :photo_url %>
+
+			<%= f.label "Data urodzenia" %>
+			<em>(rrrr-mm-dd)</em>
+			<%= f.date_field :birth %>
+
+			<%= f.label 'Biografia' %>
+			<%= f.text_area :bio, rows: 10 %>
+
+			<%= f.submit 'Zapisz', class: 'btn btn-success' %>
+			<%= link_to 'Powrót', :back, class: 'btn btn-default uneditable-input' %>
+		<% end %>
+	</div>
+</div>

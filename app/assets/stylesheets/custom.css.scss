@@ -25,7 +25,7 @@ body {
 	margin-top: 10px
 }
 
-.navbar-right {
+.navbar-right, .navbar-left {
 	margin-top: 15px;
 }
 
@@ -143,4 +143,9 @@ a:hover {
 
 .img_rank {
 	height: 130px;
+}
+
+.dir_show {
+	max-height: 300px;
+	max-width: 100%
 }
