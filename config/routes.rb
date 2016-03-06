@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'pages#index'
+  resources :directors
   resources :movies do
     resources :comments, except: [:create, :update, :index]
   end
@@ -20,5 +20,7 @@ Rails.application.routes.draw do
 
   get '/ranking/movies' => 'pages#movies', as: 'movies_ranking'
   get '/ranking/shows' => 'pages#shows', as: 'shows_ranking'
+
+  root 'pages#index'
 
 end

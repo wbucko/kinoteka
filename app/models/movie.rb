@@ -1,5 +1,6 @@
 class Movie < ActiveRecord::Base
 
+	belongs_to :director
 	has_many :comments, dependent: :destroy
 	has_many :users, through: :comments
 	accepts_nested_attributes_for :comments, :allow_destroy => true
@@ -23,7 +24,7 @@ class Movie < ActiveRecord::Base
 
 	protected
 		def set_keywords
-			self.keywords = [title, director].map(&:downcase).join(' ')
+			self.keywords = [title, director.name].map(&:downcase).join(' ')
 		end
 
 end
