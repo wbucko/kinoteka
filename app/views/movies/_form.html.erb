@@ -9,10 +9,10 @@
 			<%= f.text_field :year %>
 
 			<%= f.label 'Reżyser' %>
-			<%= f.text_field :director %>
+			<%= f.select :director_id, Director.all.map { |d| [d.name, d.id] } %>
 
-			<%= f.label 'Amazon ID' %>
-			<%= f.text_field :amazon_id %>
+			<%= f.label 'Photo URL' %>
+			<%= f.text_field :photo_url %>
 
 			<%= f.radio_button(:show, false, class: 'radio_button') %> 
 			<%= f.label 'Film' %>

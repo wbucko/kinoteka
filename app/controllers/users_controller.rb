@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :find_user, only: [:edit, :update, :show, :destroy]
+	before_action :find_user, only: [:edit, :update, :destroy]
 	before_action :require_same_user, only: [:edit, :update]
 	before_action :admin_user, only: :destroy
 	
@@ -30,10 +30,6 @@ class UsersController < ApplicationController
 			flash[:danger] = "Coś poszło nie tak, spróbuj ponownie."
 			render :edit
 		end
-	end
-
-	def show
-		@user_com = @user.comments.paginate(page: params[:page], per_page: 5)
 	end
 
 	def destroy

@@ -21,20 +21,21 @@
 	<% @user_com.each do |comment| %>
 		<div class="row">
 			<div class="col-md-2 text-center">
-				<%= image_tag "#{comment.movie.amazon_id}", class: 'img_user_show' %><br>
+				<%= image_tag "#{comment.commentable.photo_url}", class: 'img_user_show' %><br>
 			</div>
-			<div class="col-md-8 comment"> 
-				<h3><%= link_to comment.movie.title, movie_path(comment.movie) %></h3>
+			<div class="col-md-8 comment">  
+				<h3><%= link_to comment.commentable_type == "Movie" ? comment.commentable.title : comment.commentable.name, polymorphic_path(comment.commentable) %></h3>
 				<p class="btn_show"><%= comment.content %></p>
 				<% if comment.user == current_user || admin? %>
-				<p class="btn_com"><%= link_to 'Edytuj', "/movies/#{comment.movie.id}/comments/#{comment.id}/edit" %>
-				<%= link_to 'Usuń', "/movies/#{comment.movie.id}/comments/#{comment.id}", method: :delete %></p>
+				<p class="btn_com"><%= link_to 'Edytuj', edit_polymorphic_path([comment.commentable, comment]) %>
+				<%= link_to 'Usuń', polymorphic_path([comment.commentable, comment]), method: :delete %></p>
 				<% end %><br>
 			</div>
 			<div class="col-md-1 text-center">
-				<h3><%= comment.movie_grade %>/10</h3>
+				<h3><%= comment.grade %>/10</h3>
 			</div>
 		</div><br>
 	<% end %>
 	<%= will_paginate @user_com, previous_label: t('Poprzednia'), next_label: t('Następna') %>
 </div>
+

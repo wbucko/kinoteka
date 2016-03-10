@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col-sm-2 text-center">
 			<%= link_to m do %>
-				<%= image_tag "#{m.amazon_id}", class: 'img_rank' %>
+				<%= image_tag "#{m.photo_url}", class: 'img_rank' %>
 			<% end %>  
 			</div>
 			<div class="col-md-8">
@@ -23,7 +23,7 @@
 					<h2><%= m.title %></h2>
 				<% end %>
 				<h3 class="text_grey">
-				<%= m.director %></h3>
+				<%= m.director.name %></h3>
 			</div>
 			<div class="col-md-2">
 				<h3><%= m.overal_score %>/10</h3>

@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :directors
-  resources :movies do
-    resources :comments, except: [:create, :update, :index]
+  resources :directors, :movies do 
+    resources :comments, except: :index
   end
-
-  post '/movies/:movie_id/comments/new' => 'comments#create'
-  patch '/movies/:movie_id/comments/:id' => 'comments#update', as: 'update_movie_comment'
 
   resources :users, except: [:index] do 
     resource :profile

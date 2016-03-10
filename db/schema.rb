@@ -11,16 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306163134) do
+ActiveRecord::Schema.define(version: 20160309224140) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "movie_id"
-    t.integer  "user_id"
     t.string   "content"
-    t.integer  "movie_grade"
+    t.integer  "grade"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
   end
+
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "directors", force: :cascade do |t|
     t.string   "name"
@@ -34,7 +38,7 @@ ActiveRecord::Schema.define(version: 20160306163134) do
   create_table "movies", force: :cascade do |t|
     t.string   "title"
     t.integer  "year"
-    t.string   "amazon_id"
+    t.string   "photo_url"
     t.boolean  "show"
     t.text     "review"
     t.datetime "created_at"

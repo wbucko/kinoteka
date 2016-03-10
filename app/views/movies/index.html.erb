@@ -20,7 +20,7 @@
 		<div class="row">
 			<div class="col-sm-3 text-center">
 			<%= link_to m do %>
-				<%= image_tag "#{m.amazon_id}", class: 'img_index' %>
+				<%= image_tag "#{m.photo_url}", class: 'img_index' %>
 			<% end %>  
 			</div>
 			<div class="col-md-9">
@@ -28,7 +28,7 @@
 					<h2><%= m.title %></h2>
 				<% end %>
 				<h3 class="text_grey"><%= m.year %><br>
-				<%= m.director %></h3>
+				<%= m.director.name %></h3>
 			</div>
 		</div>
 		</ul>

@@ -40,12 +40,12 @@ class MoviesController < ApplicationController
 	def destroy
 		@movie.destroy
 		flash[:success] = 'Film został usunięty'
-		redirect_to root_path
+		redirect_to movies_path
 	end
 
 	private
 	def movies_params
-		params.require(:movie).permit(:title, :year, :director, :amazon_id, :show, :review)
+		params.require(:movie).permit(:title, :year, :director_id, :photo_url, :show, :review)
 	end
 
 	def find_movie

@@ -1,8 +1,9 @@
 <div class="row">
 	<h1 class="text-center">Dowiedz się więcej o interesującym cię reżyserze.</h1>
 	<hr>
-	<h3>Dodaj nową osobę
-	<%= link_to 'Nowy', new_director_path, class: 'btn btn-primary' if admin? %></h3><hr>	
+	<% if admin? %>
+		<h3>Dodaj nową osobę <%= link_to 'Nowy', new_director_path, class: 'btn btn-primary' %></h3><hr> 
+	<% end %>
 	<%= will_paginate @directors, previous_label: t('Poprzednia'), next_label: t('Następna') %>
 	<% @directors.each do |d| %>
 		<ul class="list-unstyled">
