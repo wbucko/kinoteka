@@ -30,11 +30,19 @@
 				<h5><%= link_to comment.user.name, user_profile_path(comment.user) %></h5><br>
 			</div>
 			<div class="col-md-8 comment"> 
-				<p class="btn_show"><%= comment.content %></p>
+				<p class="btn_show"><%= comment.content %></p><br>
 				<% if comment.user == current_user || admin? %>
-				<p class="btn_com"><%= link_to 'Edytuj', edit_polymorphic_path([comment.commentable, comment]) %>
-				<%= link_to 'Usuń', polymorphic_path([comment.commentable, comment]), method: :delete, data: { confirm: "Jesteś pewien?" } %></p>
-				<% end %><br>
+					<p class="btn_com"><%= link_to 'Edytuj', edit_polymorphic_path([comment.commentable, comment]) %>
+					<%= link_to 'Usuń', polymorphic_path([comment.commentable, comment]), method: :delete, data: { confirm: "Jesteś pewien?" } %></p>
+				<% end %>
+				<div class="pull-left">
+					<%= link_to polymorphic_path([comment.commentable, comment], action: :like, like: true), method: :post do %>
+						<i class="glyphicon glyphicon-thumbs-up"></i>&nbsp <%= comment.thumbs_up_total %>
+					<% end %>&nbsp
+					<%= link_to polymorphic_path([comment.commentable, comment], action: :like, like: false), method: :post do %>
+						<i class="glyphicon glyphicon-thumbs-down"></i>&nbsp <%= comment.thumbs_down_total %>
+					<% end %>
+				</div><br>
 			</div>
 			<div class="col-md-1 text-center">
 				<h3><%= comment.grade %>/10</h3>
@@ -42,4 +50,5 @@
 		</div>
 	<% end %>
 </div>
+
 

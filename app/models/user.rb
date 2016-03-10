@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 	has_many :directors, through: :comments, source: :commentable, source_type: "Director"
 	accepts_nested_attributes_for :comments, :allow_destroy => true
 	has_one :profile, dependent: :destroy
+	has_many :likes
 	has_secure_password
 
 	before_save { self.email = email.downcase }

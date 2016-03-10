@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-	before_action :find_comment, only: [:edit, :update, :destroy]
+	before_action :find_comment, only: [:edit, :update, :like, :destroy]
 	before_action :logged_user
 	before_action :load_commentable
 
@@ -24,13 +24,24 @@ class CommentsController < ApplicationController
 
 	def update
 		if @comment.update(comment_params)
-			flash[:success] = 'Komentarz został zapisany'
+			flash[:success] = 'Komentarz został zapisany.'
 			redirect_to @commentable
 		else
 			flash[:danger] = 'Coś poszło nie tak, spróbuj ponownie.'
 			render :edit
 		end
 	end
+
+	def like
+		like = Like.create(like: params[:like], user: current_user, comment: @comment)
+		if like.valid?
+			flash[:success] = "Wybór został zapisany."
+			redirect_to :back
+		else
+			flash[:danger] = "Możesz wybrać tylko raz."
+			redirect_to :back
+		end
+  end
 
 	def destroy
 		@comment.destroy

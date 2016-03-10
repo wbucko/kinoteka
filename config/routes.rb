@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :directors, :movies do 
-    resources :comments, except: :index
+    resources :comments, except: :index do 
+      member do 
+        post 'like'
+      end
+    end
   end
 
   resources :users, except: [:index] do 

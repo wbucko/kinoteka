@@ -11,7 +11,7 @@
 		<p><b>O użytkowniku:</b></p>
 		<p><%= @profile.bio %></p>
 		<%= link_to 'Usuń', destroy_user_path(@user), method: :delete, class: 'btn btn-danger btn_show' if admin? %>	
-		<%= link_to 'Edytuj', edit_user_profile_path(@user), class: 'btn btn-info btn_show' %>
+		<%= link_to 'Edytuj', edit_user_profile_path(@user), class: 'btn btn-info btn_show' if current_user || admin? %>
 		<%= link_to 'Powrót', root_path, class: 'btn btn-default btn_show' %>
 	</div>
 	<div class="col-md-12">
@@ -25,11 +25,19 @@
 			</div>
 			<div class="col-md-8 comment">  
 				<h3><%= link_to comment.commentable_type == "Movie" ? comment.commentable.title : comment.commentable.name, polymorphic_path(comment.commentable) %></h3>
-				<p class="btn_show"><%= comment.content %></p>
+				<p class="btn_show"><%= comment.content %></p><br>
 				<% if comment.user == current_user || admin? %>
-				<p class="btn_com"><%= link_to 'Edytuj', edit_polymorphic_path([comment.commentable, comment]) %>
-				<%= link_to 'Usuń', polymorphic_path([comment.commentable, comment]), method: :delete %></p>
-				<% end %><br>
+					<p class="btn_com"><%= link_to 'Edytuj', edit_polymorphic_path([comment.commentable, comment]) %>
+					<%= link_to 'Usuń', polymorphic_path([comment.commentable, comment]), method: :delete %></p>
+				<% end %>
+				<div class="pull-left">
+					<%= link_to polymorphic_path([comment.commentable, comment], action: :like, like: true), method: :post do %>
+						<i class="glyphicon glyphicon-thumbs-up"></i>&nbsp <%= comment.thumbs_up_total %>
+					<% end %>&nbsp
+					<%= link_to polymorphic_path([comment.commentable, comment], action: :like, like: false), method: :post do %>
+						<i class="glyphicon glyphicon-thumbs-down"></i>&nbsp <%= comment.thumbs_down_total %>
+					<% end %>
+				</div><br>
 			</div>
 			<div class="col-md-1 text-center">
 				<h3><%= comment.grade %>/10</h3>
