@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :users, except: [:index] do 
     resource :profile
   end
+
+  resources :contacts, only: [:new, :create]
   
   delete '/users/:id' => 'users#destroy', as: 'destroy_user'
 

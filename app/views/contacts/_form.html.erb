@@ -1,0 +1,18 @@
+<%= render 'shared/errors', obj: @contact %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 well">
+		<%= form_for @contact do |f| %>
+			<%= f.label 'Imię' %>
+			<%= f.text_field :name %>
+
+			<%= f.label 'Email' %>
+			<%= f.text_field :email %>
+
+			<%= f.label 'Treść wiadomości' %>
+			<%= f.text_area :body, rows: 10 %>
+
+			<%= f.submit 'Wyślij', class: 'btn btn-success' %>
+			<%= link_to 'Powrót', :back, class: 'btn btn-default uneditable-input' %>
+		<% end %>
+	</div>
+</div>

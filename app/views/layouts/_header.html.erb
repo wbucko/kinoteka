@@ -17,6 +17,7 @@
 				<li><%= link_to 'Reżyserzy', directors_path %></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">	
+				<li><%= link_to 'Kontakt', new_contact_path %></li>
 				<% if current_user %>
 					<li><%= link_to 'Konto', edit_user_path(current_user) %>
 					<li><%= link_to 'Profil', user_profile_path(current_user) %>
