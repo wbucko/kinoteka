@@ -3,7 +3,7 @@ require 'test_helper'
 class MovieTest < ActiveSupport::TestCase
 
 	def setup
-		@movie = Movie.new(title: 'aaa', year: 1995, director: 'sada', amazon_id: 'ss', show: true, review: 'aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa')
+		@movie = Movie.new(title: 'aaa', year: 1995, director_id: 1, photo_url: 'ss', show: true, review: 'aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa')
 	end
 
 	test 'movie should be valid' do
@@ -21,12 +21,12 @@ class MovieTest < ActiveSupport::TestCase
 	end
 
 	test 'movie should have director' do
-		@movie.director = ''
+		@movie.director_id = ''
 		assert_not @movie.valid?
 	end
 
-	test 'movie should have amazon_id' do
-		@movie.amazon_id = ''
+	test 'movie should have photo_url' do
+		@movie.photo_url = ''
 		assert_not @movie.valid?
 	end
 

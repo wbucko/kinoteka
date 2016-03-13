@@ -1,11 +1,17 @@
+Still need to be done:
+- more tests,
+- Mailer for contact form
+
+----------------------------------------------------------------------------------
+
 testing specs for Movie:
 title: string
 year: integer
 director: string
-amazon_id: string
+photo_url: string
 review: text
 
-- title, year, director, amazon_id and review must be present
+- title, year, director, photo_url and review must be present
 - year must be > 1900
 - review must be > 140
 
@@ -22,11 +28,12 @@ password: string
 
 testing specs for Comments
 user_id: integer
-movie_id: integer
-movie_grade: integer
+commentable_id: integer
+commentable_type: string
+grade: integer
 content: string
 
-- user_id, movie_id, movie_grade and content must be present
+- user_id, commentable_type, commentable_id, grade and content must be present
 - content must be longer than 40 characters
 
 

@@ -11,7 +11,7 @@
 			<%= f.label 'Treść wiadomości' %>
 			<%= f.text_area :body, rows: 10 %>
 
-			<%= f.submit 'Wyślij', class: 'btn btn-success' %>
+			<%= f.submit 'Wyślij', disabled: true, class: 'btn btn-success' %>
 			<%= link_to 'Powrót', :back, class: 'btn btn-default uneditable-input' %>
 		<% end %>
 	</div>
