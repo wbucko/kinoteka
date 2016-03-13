@@ -4,8 +4,10 @@ class Movie < ActiveRecord::Base
 	has_many :comments, as: :commentable, dependent: :destroy
 	has_many :users, through: :comments
 	accepts_nested_attributes_for :comments, :allow_destroy => true
+	has_many :movie_genres
+	has_many :genres, through: :movie_genres
 
-	validates :title, :director_id, :photo_url, presence: true
+	validates :title, :director_id, :photo_url, :genres, presence: true
 	validates :review, presence: true, length: { minimum: 140 }
 	validates :year, presence: true, numericality: { greater_than: 1900 }
 

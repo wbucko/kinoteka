@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="col-md-12">
+		<h1 class="text-center">Lista filmów i seriali z gatunku <%= @genre %>:</h1><hr>
+	</div>
+	<%= will_paginate @genre_movies, previous_label: t('Poprzednia'), next_label: t('Następna') %>
+	<% @genre_movies.each do |m| %>
+		<ul class="list-unstyled">
+		<div class="row">
+			<div class="col-sm-3 text-center">
+			<%= link_to m do %>
+				<%= image_tag "#{m.photo_url}", class: 'img_index' %>
+			<% end %>  
+			</div>
+			<div class="col-md-9">
+				<%= link_to m do %>
+					<h2><%= m.title %></h2>
+				<% end %>
+				<h3 class="text_grey"><%= m.year %><br>
+				<%= m.director.name %></h3>
+			</div>
+		</div>
+		</ul>
+	<% end %>
+	<%= will_paginate @genre_movies, previous_label: t('Poprzednia'), next_label: t('Następna') %>
+</div>

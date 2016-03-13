@@ -8,6 +8,13 @@
 			<%= f.label 'Rok produkcji' %>
 			<%= f.text_field :year %>
 
+
+      <%= f.label 'Gatunek' %><br>
+      <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name do |cb| %>
+         <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+      <% end %>
+      <br><br>
+      
 			<%= f.label 'Reżyser' %>
 			<%= f.select :director_id, Director.all.map { |d| [d.name, d.id] } %>
 
@@ -27,4 +34,3 @@
 		<% end %>
 	</div>
 </div>
-

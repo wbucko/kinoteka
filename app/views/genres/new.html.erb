@@ -1,0 +1,16 @@
+<div class="row">
+	<h1 class="text-center">Dodaj nowy gatunek filmu.</h1>
+</div>
+<%= render 'shared/errors', obj: @genre %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 well">
+		<%= form_for @genre do |f| %>
+			
+			<%= f.label 'Gatunek filmu' %>
+			<%= f.text_field :name %>
+
+			<%= f.submit 'Zapisz', class: 'btn btn-success' %>
+			<%= link_to 'Powrót', :back, class: 'btn btn-default uneditable-input' %>
+		<% end %>
+	</div>
+</div>

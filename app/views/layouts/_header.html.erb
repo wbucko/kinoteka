@@ -12,8 +12,25 @@
     <div class="collapse navbar-collapse" id="main-nav-collapse">
     	<ul class="nav navbar-nav navbar-left">
     		<li><%= link_to 'Ranking', movies_ranking_path %></li>
-				<li><%= link_to 'Filmy', movies_path %></li>
-				<li><%= link_to 'Seriale', movies_path(show: true) %></li>
+    		<li class="dropdown">  
+			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filmy<b class="caret"></b></a>  
+			    <ul class="dropdown-menu"> 
+						<li><%= link_to 'Filmy', movies_path %></li>
+						<li><%= link_to 'Seriale', movies_path(show: true) %></li>
+					</ul>
+				</li>
+				<li class="dropdown">  
+			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gatunki<b class="caret"></b></a>  
+			    <ul class="dropdown-menu"> 
+			    	<% Genre.all.each do |g| %>
+							<li><%= link_to g, genre_path(g) %></li>
+						<% end %>
+						<% if admin? %>
+							<li role="separator" class="divider"></li>
+							<li><%= link_to 'Nowy', new_genre_path %></li>
+						<% end %>
+					</ul>
+				</li>
 				<li><%= link_to 'Reżyserzy', directors_path %></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">	
@@ -28,4 +45,3 @@
 			</ul>
 		</div>
 </nav>
-

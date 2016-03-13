@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :contacts, only: [:new, :create]
+  resources :genres, only: [:new, :create, :show]
   
   delete '/users/:id' => 'users#destroy', as: 'destroy_user'
 

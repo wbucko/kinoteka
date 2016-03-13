@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311170410) do
+ActiveRecord::Schema.define(version: 20160312175135) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
@@ -43,11 +43,27 @@ ActiveRecord::Schema.define(version: 20160311170410) do
     t.text     "bio"
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.boolean "like"
     t.integer "user_id"
     t.integer "comment_id"
   end
+
+  create_table "movie_genres", force: :cascade do |t|
+    t.integer  "movie_id"
+    t.integer  "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "movie_genres", ["genre_id"], name: "index_movie_genres_on_genre_id"
+  add_index "movie_genres", ["movie_id"], name: "index_movie_genres_on_movie_id"
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
