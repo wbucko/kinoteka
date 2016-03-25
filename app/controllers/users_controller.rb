@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :find_user, only: [:edit, :update, :destroy]
-	before_action :require_same_user, only: [:edit, :update]
+	before_action :require_same_user_or_admin, only: [:edit, :update]
 	before_action :admin_user, only: :destroy
 	
 	def new
@@ -42,13 +42,6 @@ class UsersController < ApplicationController
 	def user_params
 		params.require(:user).permit(:name, :email, :password)
 	end
-
-	def require_same_user
-		if current_user != @user
-			flash[:danger] = "Możesz edytować tylko swój profil."
-			redirect_to root_path
-		end
-  end
 
   def find_user
   	@user = User.find(params[:id])

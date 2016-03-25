@@ -30,4 +30,11 @@ class ApplicationController < ActionController::Base
 			flash[:danger] = 'Tylko zalogowany użytkownik może to zrobić!'
 		end
 	end
+
+	def require_same_user_or_admin
+		if current_user != @user && !admin?
+			flash[:danger] = "Możesz edytować tylko swoje dane."
+			redirect_to root_path
+		end
+  end
 end
