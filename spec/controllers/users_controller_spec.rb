@@ -17,36 +17,34 @@ RSpec.describe UsersController, type: :controller do
 
 	describe 'POST #create' do 
 		context 'a successful create' do 
+			before do 
+				post :create, user: Fabricate.attributes_for(:user)
+			end
+
 
 			it 'saves the new user object' do 
-				post :create, user: Fabricate.attributes_for(:user)
-
 				expect(User.count).to eq(1)
 			end
 
 			it 'redirects to the users show profile action' do 
-				post :create, user: Fabricate.attributes_for(:user)
-
 				expect(response).to redirect_to new_user_profile_path(User.last)
 			end
 
 			it 'sets the success flash message' do 
-				post :create, user: Fabricate.attributes_for(:user)
-
 				expect(flash[:success]).to eq('Użytkownik został utworzony.')
 			end
 		end
 
 		context 'an unsuccessful create' do 
-			it 'does not save the user objcect with invalid input' do 
+			before do 
 				post :create, user: Fabricate.attributes_for(:user, name: nil)
+			end
 
+			it 'does not save the user objcect with invalid input' do 
 				expect(User.count).to eq(0)
 			end
 
 			it 'sets the failure flash message' do 
-				post :create, user: Fabricate.attributes_for(:user, name: nil)
-
 				expect(flash[:danger]).to eq('Coś poszło nie tak, spróbuj ponownie.')
 			end
 		end
