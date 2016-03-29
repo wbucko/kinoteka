@@ -4,7 +4,7 @@ require 'support/shared_examples'
 
 RSpec.describe MoviesController, type: :controller do 
 	let(:genre) { Fabricate(:genre) }
-	let(:movie) { Fabricate(:movie) }
+	let(:movie) { Fabricate(:movie, genre_ids: [genre.id]) }
 	let(:admin) { Fabricate(:admin) }
 
 	before { set_current_admin admin }
@@ -42,7 +42,7 @@ RSpec.describe MoviesController, type: :controller do
 		context 'admin users' do 
 			context 'a successful create' do 
 				before do 
-					post :create, movie: Fabricate.attributes_for(:movie, name: 'AAA')
+					post :create, movie: Fabricate.attributes_for(:movie, genre_ids: [genre.id])
 				end
 
 				it 'saves new movie object' do  
@@ -51,11 +51,11 @@ RSpec.describe MoviesController, type: :controller do
 				end
 
 				it 'redirects to movies path' do 
-					expect(response).to redirect_to movies_path
+					expect(response).to redirect_to root_path
 				end
 
 				it 'sets a successful flash message' do 
-					expect(flash[:success]).to eq('Film został zapisany.')
+					expect(flash[:success]).to eq('Film został zapisany')
 				end
 			end
 
@@ -94,7 +94,7 @@ RSpec.describe MoviesController, type: :controller do
 	end
 
 	describe "PUT #update" do 
-		let(:martin) { Fabricate(:movie, title: 'Martin') }
+		let(:martin) { Fabricate(:movie, title: 'Martin', genre_ids: [genre.id]) }
 
 		context 'non admin user' do 
 			it_behaves_like "requires sign in" do 
@@ -104,23 +104,20 @@ RSpec.describe MoviesController, type: :controller do
 
 		context 'admin users' do 
 			context 'successful update' do 
-				it 'updates the modified movie object' do 
+				before do 
 					put :update, movie: Fabricate.attributes_for(:movie, title: 'Steve'), id: martin.id
-
-					expect(Movie.last.name).to eq('Steve')
-					expect(Movie.last.name).not_to eq('Martin')
+				end
+				it 'updates the modified movie object' do
+					expect(Movie.last.title).to eq('Steve')
+					expect(Movie.last.title).not_to eq('Martin')
 				end
 
 				it 'sets successful flash message' do 
-					put :update, movie: Fabricate.attributes_for(:movie, title: 'Steve'), id: martin.id
-
-					expect(flash[:success]).to eq('Film został zapisany.')
+					expect(flash[:success]).to eq('Film został zapisany')
 				end
 
 				it 'redirects to the show action' do 
-					put :update, movie: Fabricate.attributes_for(:movie, title: 'Steve'), id: martin.id
-
-					expect(response).to redirect_to(movie_path(movie.last))
+					expect(response).to redirect_to(movie_path(Movie.last))
 				end
 			end
 
@@ -128,7 +125,7 @@ RSpec.describe MoviesController, type: :controller do
 				it 'does not update the author object with invalid input' do 
 					put :update, movie: Fabricate.attributes_for(:movie, title: nil), id: martin.id
 
-					expect(Movie.last.name).to eq('Martin')
+					expect(Movie.last.title).to eq('Martin')
 				end
 
 				it 'sets successful flash message' do 
@@ -159,7 +156,7 @@ RSpec.describe MoviesController, type: :controller do
 			end
 
 			it 'sets the successful flash message' do 
-				expect(flash[:success]).to eq('Reżyser został usunięty.')
+				expect(flash[:success]).to eq('Film został usunięty')
 			end
 		end
 	end
