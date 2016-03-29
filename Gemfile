@@ -33,5 +33,5 @@ end
 group :test do 
   gem 'capybara', '2.4.4'
   gem 'faker'
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers', '~> 2.8.0', require: false
 end
