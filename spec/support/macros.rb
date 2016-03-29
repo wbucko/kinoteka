@@ -18,8 +18,8 @@ def sign_in_as(user)
 	visit root_path
 	click_link "Zaloguj"
 
-	fill_in "Email", with: user.email 
-	fill_in "Hasło", with: user.password 
+	fill_in :email, with: user.email 
+	fill_in :password, with: user.password 
 
 	click_button "Zaloguj"
 	expect(page).to have_content("Zostałeś zalogowany.")
