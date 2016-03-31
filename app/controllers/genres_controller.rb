@@ -17,7 +17,7 @@ class GenresController < ApplicationController
 	end
 
 	def show
-		@genre = Genre.find(params[:id])
+		@genre = Genre.friendly.find(params[:id])
 		@genre_movies = @genre.movies.paginate(page: params[:page], per_page: 5)
 	end
 

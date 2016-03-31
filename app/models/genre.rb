@@ -1,4 +1,7 @@
 class Genre < ActiveRecord::Base
+	extend FriendlyId
+	friendly_id :name, use: :slugged
+
 	has_many :movie_genres
 	has_many :movies, through: :movie_genres
 	
@@ -8,4 +11,7 @@ class Genre < ActiveRecord::Base
 		"#{name}"
 	end
 	
+	def should_generate_new_friendly_id?
+		slug.blank? || name_changed?
+	end
 end

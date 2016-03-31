@@ -45,10 +45,10 @@ class DirectorsController < ApplicationController
 
 	private
 	def directors_params
-		params.require(:director).permit(:name, :photo_url, :birth, :bio)
+		params.require(:director).permit(:name, :photo_url, :birth, :bio, :slug)
 	end
 
 	def set_director
-		@director = Director.find(params[:id])
+		@director = Director.friendly.find(params[:id])
 	end
 end
