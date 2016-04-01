@@ -16,6 +16,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pg', group: :production
 gem 'pry'
 gem 'friendly_id', '~> 5.1'
+gem "figaro"
 
 group :development, :test do
   gem 'byebug'
