@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-	belongs_to :commentable, polymorphic: true
+	belongs_to :commentable, polymorphic: true, counter_cache: true
 	belongs_to :user
 	has_many :likes, dependent: :destroy
 
@@ -13,5 +13,13 @@ class Comment < ActiveRecord::Base
 	def thumbs_down_total
 	  self.likes.where(like: false).size
 	end
+
+	# def request_path(resource, id)
+	# 	if resource == 'directors' 
+	# 		@commentable = resource.singularize.classify.constantize.where(slug: id)
+	# 	else
+	# 		@commentable = resource.singularize.classify.constantize.find(id)
+	# 	end
+	# end
 
 end

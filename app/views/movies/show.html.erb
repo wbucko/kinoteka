@@ -20,7 +20,7 @@
 		<% if logged_in? && @movie.users.exclude?(current_user) %>
 			<h4>Podziel się z innymi swoją opinią <%= link_to 'Nowy komentarz', new_movie_comment_path(@movie), class: 'btn btn-primary' %></h4>
 		<% end %>
-		<hr><h4>Recenzje użytkowników:</h4><br>
+		<hr><h4>Recenzje użytkowników (<%= @movie.comments_count %>):</h4><br>
 	</div>
 
 	<% @movie.comments.each do |comment| %>

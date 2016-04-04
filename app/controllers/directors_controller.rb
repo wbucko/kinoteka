@@ -49,6 +49,6 @@ class DirectorsController < ApplicationController
 	end
 
 	def set_director
-		@director = Director.friendly.find(params[:id])
+		@director = Director.find(params[:id])
 	end
 end

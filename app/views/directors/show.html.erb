@@ -20,7 +20,7 @@
 	<% end %>
 	</div>
 	<div class="col-md-12">
-		<h4>Komentarze użytkowników:</h4><hr>
+		<h4>Komentarze użytkowników (<%= @director.comments_count %>):</h4><hr>
 	</div>
 	<% @director.comments.each do |comment| %>
 		<div class="row">

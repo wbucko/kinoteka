@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331203301) do
+ActiveRecord::Schema.define(version: 20160402165259) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
@@ -36,12 +36,13 @@ ActiveRecord::Schema.define(version: 20160331203301) do
 
   create_table "directors", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "photo_url"
     t.date     "birth"
     t.text     "bio"
     t.string   "slug"
+    t.integer  "comments_count", default: 0
   end
 
   add_index "directors", ["slug"], name: "index_directors_on_slug"
@@ -94,6 +95,7 @@ ActiveRecord::Schema.define(version: 20160331203301) do
     t.datetime "updated_at"
     t.text     "keywords"
     t.integer  "director_id"
+    t.integer  "comments_count", default: 0
   end
 
   create_table "profiles", force: :cascade do |t|

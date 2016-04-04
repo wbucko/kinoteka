@@ -60,6 +60,11 @@ class CommentsController < ApplicationController
 
 	def load_commentable
 		resource, id = request.path.split('/')[1, 2]
+		# if resource == 'directors' 
+		# 	@commentable = resource.singularize.classify.constantize.where(slug: id)
+		# else
+		# 	@commentable = resource.singularize.classify.constantize.find(id)
+		# end
 		@commentable = resource.singularize.classify.constantize.find(id)
 	end
 
