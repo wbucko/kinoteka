@@ -11,6 +11,9 @@
 			<%= f.label 'Hasło' %>
 			<%= f.password_field :password %>
 
+			<%= f.label 'Potwierdź hasło' %>
+			<%= f.password_field :password_confirmation %>
+
 			<%= f.submit 'Zapisz', class: 'btn btn-success' %>
 			<%= link_to 'Powrót', :back, class: 'btn btn-default uneditable-input' %>
 		<% end %>
