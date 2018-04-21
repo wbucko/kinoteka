@@ -5,7 +5,6 @@ Still need to be done:
 ----------------------------------------------------------------------------------
 Hello WWSI my old friend...
 
-
 testing specs for Movie:
 title: string
 year: integer
@@ -38,6 +37,6 @@ content: string
 - user_id, commentable_type, commentable_id, grade and content must be present
 - content must be longer than 40 characters
 
-collaborators: 
-- Robert Kusmirek 
+collaborators:
+- Robert Kusmirek
 - Wojciech Bucko
