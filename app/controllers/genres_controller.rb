@@ -2,7 +2,7 @@ class GenresController < ApplicationController
 	before_action :admin_user, except: :show
 
 	def new
-		@genre = Genre.new
+	  @genre = Genre.new
 	end
 
 	def create
