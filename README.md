@@ -3,6 +3,8 @@ Still need to be done:
 - Mailer for contact form
 
 ----------------------------------------------------------------------------------
+Hello WWSI my old friend...
+
 
 testing specs for Movie:
 title: string
@@ -36,4 +38,6 @@ content: string
 - user_id, commentable_type, commentable_id, grade and content must be present
 - content must be longer than 40 characters
 
-
+collaborators: 
+- Robert Kusmirek 
+- Wojciech Bucko
